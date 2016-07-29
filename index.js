@@ -24,7 +24,7 @@ var api = new ParseServer({
     ios: [
       {
       pfx: 'ParsePushDevelopmentCertificate.p12',
-      bundleId: 'com.SahilJain.musicShare'
+      bundleId: 'com.SahilJain.musicShare',
       production: false
       }
     ]
