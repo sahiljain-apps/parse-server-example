@@ -1,18 +1,15 @@
 Parse.Cloud.afterSave("Post", function(request) {
-  // Our "Message" class has a "text" key with the body of the message itself
-  var messageText = request.object.get('songName');
+   query = new Parse.Query(Parse.Installation);
 
-  var pushQuery = new Parse.Query(Parse.Installation);
-  pushQuery.equalTo('deviceType', 'ios'); // targeting iOS devices only
-
-  Parse.Push.send({
-    where: pushQuery, // Set our Installation query
-    data: {
-      alert: "songName: " + messageText
-    }
-  }).then(function() {
-    // Push was successful
-  }, function(error) {
-    throw "Got an error " + error.code + " : " + error.message;
-  });
+   Parse.Push.send({
+     where: query,
+     data: { alert: request.object.get("songName") + ': ' + request.object.get("previewUrl") }
+   }, { useMasterKey: true })
+   .then(function() {
+     // Push sent!
+     console.log(request.params);
+     response.success();
+   }, function(error) {
+     // There was a problem :disappointed:
+   });
 });
