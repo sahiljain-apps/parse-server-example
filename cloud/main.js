@@ -3,8 +3,8 @@ Parse.Cloud.afterSave("Post", function(request) {
 
 
    Parse.Push.send({
-     channels: [request.object.id],
-     data: { alert: '@ ' +  request.object.get("username") + ' shared: ' + request.object.get("songName") + ' by: ' + request.object.get("songArtist") }
+     channels: [request.object.get("fromUser").id],
+     data: { alert: '@ ' +  request.object.get("userName") + ' shared: ' + request.object.get("songName") + ' by: ' + request.object.get("songArtist") }
    }, { useMasterKey: true })
    .then(function() {
      // Push sent!
