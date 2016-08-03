@@ -1,8 +1,8 @@
 Parse.Cloud.afterSave("Post", function(request) {
    query = new Parse.Query(Parse.Installation);
-
-   var followingQuery = Parse.Query("Follow");
-   followingQuery.where("toUser", request.object.get("fromUser"));
+   //
+  //  var followingQuery = Parse.Query("Follow");
+  //  followingQuery.where("toUser", request.object.get("fromUser"));
 
   //  var userQuery = Parse.Query(Parse.User);
   //  userQuery.matchesQuery(self, )
