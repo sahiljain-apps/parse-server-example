@@ -3,7 +3,7 @@ Parse.Cloud.afterSave("Post", function(request) {
 
    Parse.Push.send({
      where: query,
-     data: { alert: request.object.get("songName") + ': ' + request.object.get("previewUrl") }
+     data: { alert: request.object.get("userName") + ' shared: ' + request.object.get("songName") }
    }, { useMasterKey: true })
    .then(function() {
      // Push sent!
